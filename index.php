@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-3 mx-1 shadow">
                 <img src="img/more inf.png" style="width: 100%; height: 280px; margin-bottom: 10px"alt="">
-                <h5 class="text-center">Click on the button for more information.</h5>
+                <h5 class="text-center">Click on the button for more in4.</h5>
                 <a href="#"><button class="btn btn-success my-3" style="margin-left: 25%">More Information</button></a>
             </div>
             <div class="col-md-4 mx-1 shadow">
