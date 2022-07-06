@@ -57,7 +57,7 @@
                                         
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Price:</label>
+                                        <label for="">Medicine Price:</label>
                                         <input class="form-control" type="text" name="price" id="price" readonly="readonly" value="<?php echo $row['price'] ?>"/>
                                         
                                     </div>
