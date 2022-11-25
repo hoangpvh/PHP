@@ -1,0 +1,310 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th6 30, 2022 lúc 05:10 PM
+-- Phiên bản máy phục vụ: 10.4.22-MariaDB
+-- Phiên bản PHP: 8.1.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `hms`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(10) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`) VALUES
+(1, 'Admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `doc_id` int(11) NOT NULL DEFAULT 0,
+  `patient_id` int(11) NOT NULL DEFAULT 0,
+  `patient` varchar(20) NOT NULL,
+  `dateofbirth` varchar(100) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `doctor` varchar(30) NOT NULL,
+  `doctor_email` varchar(100) NOT NULL,
+  `docFees` int(5) NOT NULL,
+  `appdate` date NOT NULL,
+  `apptime` time NOT NULL,
+  `userStatus` int(5) NOT NULL,
+  `doctorStatus` int(5) NOT NULL,
+  `status` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `appointment`
+--
+
+INSERT INTO `appointment` (`doc_id`, `patient_id`, `patient`, `dateofbirth`, `gender`, `email`, `phone`, `doctor`, `doctor_email`, `docFees`, `appdate`, `apptime`, `userStatus`, `doctorStatus`, `status`) VALUES
+(1, 1, 'Hoàng', '28-11-2001', 'Male', 'hoang@gmail.com', '0987654332', 'Nam', 'nam@gmail.com', 100, '2022-06-30', '08:00:00', 1, 0, 0),
+(1, 1, 'Hoàng', '28-11-2001', 'Male', 'hoang@gmail.com', '0987654332', 'Nam', 'nam@gmail.com', 100, '2022-07-02', '10:00:00', 1, 1, 0),
+(1, 1, 'Hoàng', '28-11-2001', 'Male', 'hoang@gmail.com', '0987654332', 'Nam', 'nam@gmail.com', 100, '2022-07-03', '08:00:00', 1, 1, 0),
+(1, 1, 'Hoàng', '28-11-2001', 'Male', 'hoang@gmail.com', '0987654332', 'Nam', 'nam@gmail.com', 100, '2022-07-05', '10:00:00', 1, 1, 0),
+(1, 2, 'Tân', '2022-06-01', 'Male', 'Tan@gmail.com', '0987655443', 'Nam', 'nam@gmail.com', 100, '2022-07-01', '10:00:00', 1, 1, 0),
+(2, 1, 'Hoàng', '28-11-2001', 'Male', 'hoang@gmail.com', '0987654332', 'Mạnh', 'manh@gmail.com', 200, '2022-07-04', '08:00:00', 1, 1, 0),
+(2, 1, 'Hoàng', '28-11-2001', 'Male', 'hoang@gmail.com', '0987654332', 'Mạnh', 'manh@gmail.com', 200, '2022-07-06', '14:00:00', 1, 1, 0),
+(2, 1, 'Hoàng', '28-11-2001', 'Male', 'hoang@gmail.com', '0987654332', 'Mạnh', 'manh@gmail.com', 200, '2022-07-07', '08:00:00', 1, 1, 0),
+(2, 2, 'Tân', '2022-06-01', 'Male', 'Tan@gmail.com', '0987655443', 'Mạnh', 'manh@gmail.com', 200, '2022-06-29', '10:00:00', 1, 1, 1),
+(2, 2, 'Tân', '2022-06-01', 'Male', 'Tan@gmail.com', '0987655443', 'Mạnh', 'manh@gmail.com', 200, '2022-07-02', '14:00:00', 1, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `message` varchar(200) NOT NULL,
+  `date_send` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `contact`
+--
+
+INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `message`, `date_send`) VALUES
+(4, 'Hoàng', 'hoang@gmail.com', '0987654321', 'Toi hai long', '2022-05-22 15:52:29'),
+(5, 'Hoàng', 'hoang@gmail.com', '0987654321', 'Toi hai long', '2022-05-22 15:54:44');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `doctors`
+--
+
+CREATE TABLE `doctors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `dateofbirth` varchar(100) NOT NULL,
+  `gender` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `spec` varchar(50) NOT NULL,
+  `docFees` int(10) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `date_reg` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `doctors`
+--
+
+INSERT INTO `doctors` (`id`, `name`, `dateofbirth`, `gender`, `email`, `password`, `phone`, `address`, `spec`, `docFees`, `status`, `date_reg`) VALUES
+(1, 'Nam', '2001-01-01', 'Male', 'nam@gmail.com', 'Nam2k1', '2345678901', 'Lào Cai', 'Tim Mạch', 100, 'Approve', '2022-06-28 14:52:21'),
+(2, 'Mạnh', '2001-01-01', 'Male', 'manh@gmail.com', 'Manh2k1', '2345678901', 'Hà Nội', 'Tiêu Hóa', 200, 'Approve', '2022-06-28 14:54:21'),
+(4, 'Ngoc', '2022-06-28', 'Female', 'Ngoc@gmail.com', 'Ngoc@123', '1234567890', 'Lao Cai', 'Xương Khớp', 150, 'Approve', '2022-06-28 14:50:21');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `medicine`
+--
+
+CREATE TABLE `medicine` (
+  `id` int(11) NOT NULL,
+  `medicine` varchar(100) NOT NULL,
+  `price` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `medicine`
+--
+
+INSERT INTO `medicine` (`id`, `medicine`, `price`) VALUES
+(1, 'Thuốc giảm đau', 100),
+(2, 'Thuốc ổn định huyết áp', 200),
+(3, 'Thuốc chữa đau dạ dày', 500);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `patient`
+--
+
+CREATE TABLE `patient` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `dateofbirth` varchar(100) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `date_reg` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `patient`
+--
+
+INSERT INTO `patient` (`id`, `name`, `dateofbirth`, `gender`, `email`, `password`, `phone`, `address`, `date_reg`) VALUES
+(1, 'Hoàng', '28-11-2001', 'Male', 'hoang@gmail.com', 'Hoang2k1', '0987654332', 'BACGIANG', '2022-05-22 02:19:15'),
+(2, 'Tân', '2022-06-01', 'Male', 'Tan@gmail.com', 'Tan@1234', '09876554433', 'BacGiang', '2022-06-30 20:59:26');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `prescribe`
+--
+
+CREATE TABLE `prescribe` (
+  `appdate_pre` date NOT NULL,
+  `doctor_id` int(11) NOT NULL DEFAULT 0,
+  `patient_id` int(11) NOT NULL DEFAULT 0,
+  `diagnostic` varchar(100) NOT NULL,
+  `prescription` varchar(100) NOT NULL,
+  `medicine` varchar(100) NOT NULL,
+  `price` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `prescribe`
+--
+
+INSERT INTO `prescribe` (`appdate_pre`, `doctor_id`, `patient_id`, `diagnostic`, `prescription`, `medicine`, `price`) VALUES
+('2022-07-01', 2, 2, 'a', 'a', 'Thuốc giảm đau', 100);
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`doc_id`,`patient_id`,`appdate`),
+  ADD KEY `patient_id` (`patient_id`);
+
+--
+-- Chỉ mục cho bảng `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `doctors`
+--
+ALTER TABLE `doctors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `medicine`
+--
+ALTER TABLE `medicine`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `patient`
+--
+ALTER TABLE `patient`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `prescribe`
+--
+ALTER TABLE `prescribe`
+  ADD PRIMARY KEY (`appdate_pre`,`doctor_id`),
+  ADD KEY `appointment_ibfk_5` (`doctor_id`),
+  ADD KEY `appointment_ibfk_6` (`patient_id`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT cho bảng `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `doctors`
+--
+ALTER TABLE `doctors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `medicine`
+--
+ALTER TABLE `medicine`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `patient`
+--
+ALTER TABLE `patient`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `appointment`
+--
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `doctors` (`id`),
+  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`id`);
+
+--
+-- Các ràng buộc cho bảng `prescribe`
+--
+ALTER TABLE `prescribe`
+  ADD CONSTRAINT `appointment_ibfk_5` FOREIGN KEY (`doctor_id`) REFERENCES `appointment` (`doc_id`),
+  ADD CONSTRAINT `appointment_ibfk_6` FOREIGN KEY (`patient_id`) REFERENCES `appointment` (`patient_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
